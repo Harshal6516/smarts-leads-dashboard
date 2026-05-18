@@ -131,6 +131,136 @@ DELETE /api/leads/:id
 GET /api/leads/export/csv
 
 ---
+# API Documentation
+
+Base URL:
+
+http://localhost:5000/api
+
+---
+
+## Authentication APIs
+
+### Register User
+
+POST /auth/register
+
+Request Body:
+
+{
+  "name": "Harshal",
+  "email": "harshal@gmail.com",
+  "password": "123456",
+  "role": "admin"
+}
+
+Response:
+
+{
+  "success": true,
+  "message": "User registered successfully"
+}
+
+---
+
+### Login User
+
+POST /auth/login
+
+Request Body:
+
+{
+  "email": "harshal@gmail.com",
+  "password": "123456"
+}
+
+Response:
+
+{
+  "success": true,
+  "token": "jwt_token"
+}
+
+---
+
+### Get Current User
+
+GET /auth/me
+
+Headers:
+
+Authorization: Bearer TOKEN
+
+---
+
+## Leads APIs
+
+### Get All Leads
+
+GET /leads
+
+Query Params:
+
+- page
+- search
+- status
+- source
+- sort
+
+Example:
+
+/leads?page=1&search=rahul&status=Qualified
+
+---
+
+### Create Lead
+
+POST /leads
+
+Headers:
+
+Authorization: Bearer TOKEN
+
+Request Body:
+
+{
+  "name": "Rahul",
+  "email": "rahul@gmail.com",
+  "status": "Qualified",
+  "source": "Instagram"
+}
+
+---
+
+### Update Lead
+
+PUT /leads/:id
+
+Headers:
+
+Authorization: Bearer TOKEN
+
+---
+
+### Delete Lead
+
+DELETE /leads/:id
+
+Headers:
+
+Authorization: Bearer TOKEN
+
+Admin only
+
+---
+
+### Export CSV
+
+GET /leads/export/csv
+
+Headers:
+
+Authorization: Bearer TOKEN
 
 # Roles
 
