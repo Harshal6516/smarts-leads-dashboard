@@ -10,7 +10,15 @@ import errorMiddleware from "./middlewares/errorMiddleware";
 import leadRoutes from "./routes/lead.routes";
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://smarts-leads-dashboard-nine.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
@@ -25,6 +33,7 @@ app.get("/", (_req, res) => {
   });
 });
 
-app.use(errorMiddleware);
 app.use("/api/leads", leadRoutes);
+
+app.use(errorMiddleware);
 export default app;
